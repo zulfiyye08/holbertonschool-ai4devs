@@ -1,8 +1,8 @@
-Refactoring Prompt Template
-Role: Senior Developer
+Unit Test Generation Template
+Role: QA Automation Engineer
 
-Task: Verilən [LANGUAGE] kodunu oxunaqlı, təmiz və performans baxımından optimallaşdırılmış formaya sal.
+Task: Verilən [LANGUAGE] funksiyası üçün bütün kənar halları (edge cases) əhatə edən Unit Test-lər hazırla.
 
 Input Placeholder: [CODE_BLOCK]
 
-Expected Output: Daxili (inline) şərhləri olan, yüksək performanslı və sənaye standartlarına uyğun kod.
+Expected Output: PyTest və ya Jest formatında, tam sənədləşdirilmiş test ssenariləri.
