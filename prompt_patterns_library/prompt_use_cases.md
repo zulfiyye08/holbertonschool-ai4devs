@@ -1,83 +1,83 @@
 1. Kod Keyfiyyəti və Refaktorinq (Code Quality & Refactoring)
-Məqsəd: Mövcud kodu daha oxunaqlı, sürətli və standartlara uyğun hala gətirmək.
+Məqsəd: Mövcud kodu daha oxunaqlı, performanslı və sənaye standartlarına uyğun hala gətirmək.
 
 Kodun Optimallaşdırılması:
 
-Giriş: Mürəkkəb dövrlər (loops) və ya ağır hesablamalar olan kod bloku.
+Giriş: Mürəkkəb dövrlər (nested loops) və ya yüksək resurs tələb edən hesablamalar.
 
-Çıxış: Zaman və yaddaş mürəkkəbliyi (O notation) optimallaşdırılmış yeni kod.
+Çıxış: Zaman və yaddaş mürəkkəbliyi (Big O notation) optimallaşdırılmış səmərəli kod.
 
 Dizayn Patternlərinin Tətbiqi:
 
-Giriş: "Spaghetti" kod və ya təkrar olunan funksionallıq.
+Giriş: "Spaghetti" kod və ya təkrar olunan (redundant) funksionallıq.
 
-Çıxış: Uyğun dizayn patterni (məsələn, Singleton, Strategy) tətbiq edilmiş struktur.
+Çıxış: Uyğun dizayn patterni (məsələn, Singleton, Strategy, Factory) tətbiq edilmiş struktur.
 
 Legacy Kodun Müasirləşdirilməsi:
 
-Giriş: Köhnə kitabxanalar və ya köhnəlmiş sintaksis (məsələn, Python 2).
+Giriş: Köhnəlmiş kitabxanalar və ya dəstəklənməyən sintaksis (məsələn, Python 2.x).
 
-Çıxış: Müasir standartlara (məsələn, Python 3.12+) uyğunlaşdırılmış kod.
+Çıxış: Müasir standartlara (məsələn, Python 3.12+, ES6+) uyğunlaşdırılmış kod.
 
 2. Xətaların Tapılması və Sazlanması (Debugging & Error Handling)
-Məqsəd: Koddakı gizli səhvləri aşkar etmək və həll yolları tapmaq.
+Məqsəd: Koddakı məntiqi və texniki səhvləri aşkar edərək sistemi stabil hala gətirmək.
 
 Stack Trace Analizi:
 
-Giriş: Terminaldan alınan xəta mesajı və əlaqəli kod parçası.
+Giriş: Terminaldan alınan xəta mesajı və əlaqəli kod bloku.
 
-Çıxış: Xətanın izahı və onu aradan qaldırmaq üçün konkret addımlar.
+Çıxış: Xətanın köklü səbəbinin (root cause) izahı və konkret həll kodu.
 
-Təhlükəsizlik Boşluqlarının Tapılması:
+Təhlükəsizlik Boşluqlarının Təhlili:
 
-Giriş: Web formaları və ya verilənlər bazası sorğuları olan kod.
+Giriş: İstifadəçi girişləri, web formaları və ya verilənlər bazası sorğuları.
 
-Çıxış: SQL Injection, XSS kimi boşluqların müəyyən edilməsi və "sanitized" edilmiş kod.
+Çıxış: SQL Injection, XSS kimi boşluqların aradan qaldırıldığı, təmizlənmiş (sanitized) kod.
 
 Məntiqi Səhvlərin (Logical Bugs) Təsbiti:
 
-Giriş: İşləyən lakin yanlış nəticə verən funksiya.
+Giriş: İşləyən, lakin gözlənilən nəticəni verməyən funksiya.
 
-Çıxış: Məntiqdəki yanlışlığın izahı və düzəliş.
+Çıxış: Alqoritmdəki yanlışlığın izahı və düzəldilmiş məntiq.
 
 3. Testləşdirmə (Testing)
-Məqsəd: Proqramın dayanıqlığını təmin etmək üçün avtomatlaşdırılmış testlər yazmaq.
+Məqsəd: Proqramın müxtəlif şəraitlərdə düzgün işlədiyini avtomatlaşdırılmış testlərlə təsdiqləmək.
 
 Unit Testlərin Yaradılması:
 
-Giriş: Bir sinif və ya funksiya.
+Giriş: Mövcud sinif (class) və ya funksiya.
 
-Çıxış: Jest, PyTest və ya JUnit formatında test ssenariləri.
+Çıxış: Jest, PyTest və ya JUnit formatında yazılmış test ssenariləri.
 
 Edge Case Ssenariləri:
 
-Giriş: İstifadəçi məlumatlarını qəbul edən API endpoint.
+Giriş: Məlumat qəbul edən API endpointləri.
 
-Çıxış: Boş giriş, limitdən artıq ölçü və ya yanlış tip kimi kənar hallar üçün test siyahısı.
+Çıxış: Boş giriş, limit aşımı və ya yanlış tip kimi kənar hallar üçün test siyahısı.
 
 Mock Məlumatların Hazırlanması:
 
-Giriş: Verilənlər bazası sxemi (Schema).
+Giriş: Verilənlər bazası sxemi (DB Schema).
 
-Çıxış: Testlər üçün istifadə ediləcək JSON formatında saxta (mock) məlumatlar.
+Çıxış: Test mühiti üçün hazırlanmış JSON formatlı saxta (mock) datalar.
 
 4. Sənədləşdirmə və Baxım (Documentation & Maintenance)
-Məqsəd: Kodun digər tərtibatçılar üçün anlaşıqlı olmasını təmin etmək.
+Məqsəd: Kodun digər tərtibatçılar tərəfindən asan başa düşülməsini və davamlılığını təmin etmək.
 
 API Sənədlərinin Yaradılması:
 
 Giriş: Sinif və metodların mənbə kodu.
 
-Çıxış: JSDoc, Doxygen və ya Markdown formatında sənədlər.
+Çıxış: Swagger, JSDoc və ya Markdown formatında peşəkar sənədlər.
 
-Commit Mesajlarının Hazırlanması:
+Commit Mesajlarının Standartlaşdırılması:
 
 Giriş: git diff çıxışı (dəyişikliklərin siyahısı).
 
-Çıxış: "Conventional Commits" standartına uyğun (məsələn, feat:, fix:) mesaj.
+Çıxış: Conventional Commits standartına (məsələn: feat:, fix:, refactor:) uyğun mesajlar.
 
 Kod Şərhlərinin Əlavə Edilməsi:
 
-Giriş: Sıx və mürəkkəb kod bloku.
+Giriş: Sıx və mürəkkəb kod blokları.
 
-Çıxış: Hər sətirin məqsədini izah edən daxili (inline) şərhlər.
+Çıxış: Məntiqi izah edən daxili (inline) şərhlər və geniş Docstring-lər.
