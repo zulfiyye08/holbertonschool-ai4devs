@@ -1,5 +1,6 @@
-# Refactoring Prompt Template
+# Refactoring
+
 **Role**: Senior Developer
-**Task**: Verilən [LANGUAGE] kodunu oxunaqlılıq və performans baxımından təkmilləşdir.
+**Task**: Refactor the given [LANGUAGE] code for clarity and performance.
 **Input Placeholder**: [CODE_BLOCK]
-**Expected Output**: Inline şərhləri olan təmiz və optimallaşdırılmış kod.
+**Expected Output**: Clean, optimized code with inline comments.
