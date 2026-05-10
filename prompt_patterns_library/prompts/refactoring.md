@@ -1,8 +1,5 @@
-Unit Test Generation Template
-Role: QA Automation Engineer
-
-Task: Verilən [LANGUAGE] funksiyası üçün bütün kənar halları (edge cases) əhatə edən Unit Test-lər hazırla.
-
-Input Placeholder: [CODE_BLOCK]
-
-Expected Output: PyTest və ya Jest formatında, tam sənədləşdirilmiş test ssenariləri.
+# Refactoring Prompt Template
+**Role**: Senior Developer
+**Task**: Verilən [LANGUAGE] kodunu oxunaqlılıq və performans baxımından təkmilləşdir.
+**Input Placeholder**: [CODE_BLOCK]
+**Expected Output**: Inline şərhləri olan təmiz və optimallaşdırılmış kod.
