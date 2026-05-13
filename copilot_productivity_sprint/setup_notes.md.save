@@ -1,0 +1,6 @@
+5. Yoxlama
+Quraşdırılmanın uğurlu olduğunu yoxlamaq üçün yeni bir .js və ya .py faylı yaradın və şərh (comment) yazaraq Copilot-un təklif verib-vermədiyini müşahidə edin:
+
+Python
+# Create a function to calculate the area of a circle
+Qeyd: GitHub Copilot-un ən yaxşı nəticə verməsi üçün kod yazarkən fayl adlarının və şərhlərin təsviri olması tövsiyə edilir.
