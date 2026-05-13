@@ -1,16 +1,51 @@
-# Pull Request: Add User Activity Log Export Feature
+📋 Gelişmiş AI İnceleme Günlüğü: Kullanıcı Aktivite Günlüğü Dışa Aktarma
+🔍 1. Problem Tanımı ve Kapsam
+Mevcut sistemde aktivite günlükleri yalnızca ham metin (raw text) formatında tutulmaktadır. Bu durum, uyumluluk denetimleri sırasında verilerin manuel olarak ayıklanmasına neden olmakta, büyük veri setlerinde analiz yapmayı imkansız hale getirmekte ve paydaşların raporlama ihtiyaçlarını karşılayamamaktadır.
 
-## Summary
-This PR implements a new logging and export module that allows administrators to export system activity logs into JSON and CSV formats. It also includes a date-filtering mechanism to generate specific time-bound reports.
+🎯 2. Hedef Kullanıcılar
+Sistem Yöneticileri: Operasyonel denetimler ve hata takibi için yapılandırılmış veriye ihtiyaç duyarlar.
 
-## Changes
-- **Added `LogExporter` class**: A core utility for handling data transformation.
-- **Implemented `filter_by_date()`**: logic to allow granular log analysis.
-- **Export Formats**: Added support for both structured `JSON` and spreadsheet-friendly `CSV` outputs.
-- **Directory Management**: Added automatic creation of an `/exports/` directory to store generated files.
-- **Unit Tests**: Added 5 new tests in `tests/test_exporter.py` covering format validation and empty data handling.
+Uyumluluk ve Denetim Ekipleri: Yasal mevzuatlar gereği belirli zaman aralıklarına ait raporları standart formatlarda (CSV/JSON) talep ederler.
 
-## Context
-This feature addresses the need for compliance reporting. Previously, logs were only viewable in raw text format, making it difficult for stakeholders to perform audits.
+🛠️ 3. Temel Özellikler (Core Features)
+LogExporter Sınıfı: Veri dönüştürme mantığını kapsülleyen merkezi yapı.
 
-~120 LOC. Related issue: #58.
+Granüler Filtreleme: filter_by_date() fonksiyonu ile spesifik tarih aralıklarına odaklanma imkanı.
+
+Çoklu Format Desteği: Hem makineler (JSON) hem de tablolar (CSV) için optimize edilmiş çıktılar.
+
+Otomatik Dizin Yönetimi: /exports/ klasörünün sistem tarafından dinamik oluşturulması.
+
+Hata Toleransı: Boş veri setleri ve format doğrulama için entegre birim testleri.
+
+⚠️ 4. Proje Kısıtlamaları (Constraints)
+Kod Hacmi: Yeni özellik, sürdürülebilirlik adına 100-200 satır (mevcut: ~120 LOC) arasında tutulmuştur.
+
+Bağımlılık: Mevcut dosya sistemi izinlerine bağlıdır; işletim sistemi seviyesindeki kısıtlamalar dışa aktarımı etkileyebilir.
+
+💬 5. Detaylı Satır İçi İncelemeler (Inline Comments - 8+ Adet)
+(Satır 12): logs_data isimlendirmesi modül genelinde raw_logs olarak güncellenmelidir. Bu, değişkenin içeriğinin henüz işlenmemiş ham veri olduğunu açıkça belirterek okunabilirliği artırır.
+
+(Satır 24): filter_by_date fonksiyonuna giren start_date ve end_date için datetime tipi doğrulaması eklenmelidir. Geçersiz tiplerin girişi, çalışma zamanı hatalarına yol açarak sistemin çökmesine neden olabilir.
+
+(Satır 35): to_json metodu açılırken encoding='utf-8' parametresi açıkça tanımlanmalıdır. Bu, farklı sunucu ortamlarında (Linux vs Windows) karakter kodlama hatalarını önlemek için kritiktir.
+
+(Satır 45): to_csv metodunda veri listesinin boş olup olmadığı kontrol edilmelidir. Boş bir listede .keys() çağırmak AttributeError fırlatacaktır; bu durumun zarif bir şekilde yönetilmesi gerekir.
+
+(Satır 52): Dosya yazma işlemleri with open(...) blokları içinde yapılmalıdır. Bu, işlem bitiminde veya bir hata oluştuğunda dosya kaynaklarının otomatik olarak serbest bırakılmasını sağlar.
+
+(Satır 58): Klasör oluşturma sırasında os.makedirs(path, exist_ok=True) kullanılmalıdır. Klasörün zaten var olması durumunda kodun hata vermeden devam etmesi sağlanmış olur.
+
+(Satır 62): CSV formatına aktarım yapılırken dize (string) verileri içindeki virgüllerin sütunları kaydırmaması için tırnak içine alma (quoting) işlemi uygulanmalıdır.
+
+(Satır 75): filter_by_date içinde büyük veri setleri için performans artışı adına liste üreteçleri (list comprehensions) tercih edilmelidir; bu işlem bellek kullanımını daha verimli kılar.
+
+🎭 6. Persona Bazlı Global Değerlendirme
+🛡️ Güvenlik (Security Persona)
+Hassas log verilerinin dışa aktarıldığı /exports/ dizini için işletim sistemi seviyesinde kısıtlı erişim izinleri (örneğin chmod 600) uygulanması önerilir. Ayrıca, dışa aktarılan verilerin "CSV Injection" saldırılarına (hücrelerin başında yer alan =, + gibi karakterler) karşı temizlenmesi gerekir.
+
+⚡ Performans (Performance Persona)
+Mevcut yapı tüm logları belleğe yüklemektedir. Çok büyük ölçekli sistemlerde bellek darboğazı yaşanmaması için to_json ve to_csv metodlarının veriyi bir generator aracılığıyla parça parça (streaming) işlemesi daha verimli olacaktır.
+
+🏗️ Sürdürülebilirlik (Maintainability Persona)
+LogExporter sınıfı, ileride PDF veya XML gibi yeni formatlar eklenmesi ihtimaline karşı Strateji Tasarım Deseni (Strategy Pattern) kullanılarak daha modüler bir yapıya kavuşturulabilir. Hata yönetiminde ise sadece genel hatalar değil, "Disk Dolu" veya "Yazma Yetkisi Yok" gibi spesifik istisnalar tanımlanmalıdır.
